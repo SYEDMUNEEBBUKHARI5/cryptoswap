@@ -21,25 +21,25 @@ const HeroSection=({accounts, tokenData}) =>{
         image: "",
     })
     return (
-        <div className="Style.HeroSection" >
-            <div className={Style.HeroSection_box}>
-                <div className={Style.HeroSection_box_heading}>
+        <div className={Style.HeroSection} >
+            <div className={Style.HeroSection_modal}>
+                <div className={Style.HeroSection_modal_heading}>
                     <p>Swap</p>
-                    <div className={Style.HeroSection_box_heading_img}>
+                    <div className={Style.HeroSection_modal_heading_img}>
                         <Image src={images.close} onClick={()=> setOpenSetting(true)} alt="image" width={50} height={50}  />
                     </div>
                 </div>
-                <div className={Style.HeroSection_box_input}>
+                <div className={Style.HeroSection_modal_input}>
                     <input type="text" placeholder="0" />
-                    <button onClick={()=> openToken(true)}>
+                    <button onClick={()=> setOpenToken(true)}>
                         <Image src={images.image || images.ether} width={20} height={20} alt="ether"  />
                         {tokenOne.name || "ETH"}
                         <small>9474</small>
                     </button>
                 </div>
-                <div className={Style.HeroSection_box_input}>
+                <div className={Style.HeroSection_modal_input}>
                     <input type="text" placeholder="0" />
-                    <button onClick={()=> openToken(true)}>
+                    <button onClick={()=> setOpenTokensTwo(true)}>
                         <Image src={images.image || images.ether} width={20} height={20} alt="ether"  />
                         {tokenTwo.name || "ETH"}
                         <small>9474</small> 
@@ -48,17 +48,17 @@ const HeroSection=({accounts, tokenData}) =>{
                 {
                     accounts ?
                     (
-                        <button className={Style.HeroSection_box_btn}>Connect Wallet</button>
+                        <button className={Style.HeroSection_modal_btn}>Connect Wallet</button>
                     )
                     :
                     (
-                        <button className={Style.HeroSection_box_btn} onClick={()=>{}}>Swap</button>
+                        <button className={Style.HeroSection_modal_btn} onClick={()=>{}}>Swap</button>
                     )
                 }
             </div>
             {openSetting && <Token setOpenSetting={setOpenSetting} />}
-            {openToken && <SearchToken openToken={setOpenToken} token={setTokenOne} tokenData={tokenData} />}
-            {openToken && <SearchToken openToken={setOpenTokensTwo} token={setTokenTwo} tokenData={tokenData} />}
+            {openToken && <SearchToken openToken={setOpenToken} tokens={setTokenOne} tokenData={tokenData} />}
+            {openTokensTwo && <SearchToken openToken={setOpenTokensTwo} tokens={setTokenTwo} tokenData={tokenData} />}
         </div>
     )
 }

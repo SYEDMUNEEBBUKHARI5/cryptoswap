@@ -24,31 +24,32 @@ const Navbar=() =>{
         }
     ];
     const [openModel, setOpenModel] = useState(false);
-    const [openTokenBox, setOpenTokenBox] = useState(false);
+    const [openTokenModal, setOpenTokenModal] = useState(false);
+    const [account, setaccount] = useState(false);
 
     return (
         <div className={Style.Navbar}>
-            <div className={Style.Navbar_box}>
-                <div className={Style.Navbar_box_left}>
+            <div className={Style.Navbar_modal}>
+                <div className={Style.Navbar_modal_left}>
                     {/* DEX Icon */}
-                    <div className={Style.Navbar_box_left_img}>
+                    <div className={Style.Navbar_modal_left_img}>
                         <Image src={images.cryptoswap}  alt="logo" width={50} height={50} />
                     </div>
                     {/* Menu Items */}
-                    <div className={Style.Navbar_box_left_menu}>
+                    <div className={Style.Navbar_modal_left_menu}>
                         {
                             menuItems.map((el, i)=>(
                                 <Link key={i + 1} href = {{pathname: `${el.name}`, query: `${el.link}`}}>
-                                    <p className={Style.Navbar_box_left_menu_item}>{el.name}</p>
+                                    <p className={Style.Navbar_modal_left_menu_item}>{el.name}</p>
                                 </Link>
                             ))
                         }
                     </div>
                 </div>
                 {/* Middle Items*/ }
-                <div className={Style.Navbar_box_middle}>
-                   <div className={Style.Navbar_box_middle_search}>
-                        <div className={Style.Navbar_box_middle_search_img}>
+                <div className={Style.Navbar_modal_middle}>
+                   <div className={Style.Navbar_modal_middle_search}>
+                        <div className={Style.Navbar_modal_middle_search_img}>
                             <Image src={images.search} alt="search" width={20} height={20} />
                         </div>
                         {/* Input Section */}
@@ -56,14 +57,22 @@ const Navbar=() =>{
                    </div>
                 </div>
                 {/* Right Section */}
-                <div className={Style.Navbar_box_right}>
-                    <div className={Style.Navbar_box_right_box}>
-                        <div className={Style.Navbar_box_right_box_img}>
+                <div className={Style.Navbar_modal_right}>
+                    <div className={Style.Navbar_modal_right_modal}>
+                        <div className={Style.Navbar_modal_right_modal_img}>
                             <Image src={images.ether} alt="Network" height={30} width={30} />
                         </div>
                         <p>Network Name</p>
                     </div>
-                    <button onClick={()=>setOpenModel(true)}>Address</button>
+                    {
+                        account ? (
+                            <button onClick={()=>setOpenModel(true)}>Connect</button>
+                        )
+                        :
+                        (
+                            <button onClick={()=>setOpenTokenModal(true)}>0x2342re234234guyg67ggyug</button>
+                        )
+                    }
                     {
                         openModel && (
                             <Model setOpenModel={setOpenModel} connectWallet="Connect" />
@@ -73,8 +82,8 @@ const Navbar=() =>{
             </div>
             {/* TokenList which user have in his wallet */}
             {
-                openTokenBox && (
-                    <TokenList  tokenDate="hey" setOpenTokenBox={setOpenTokenBox} />
+                openTokenModal && (
+                    <TokenList  tokenDate="hey" setOpenTokenModal={setOpenTokenModal} />
                 )
             }
         </div>

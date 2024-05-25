@@ -3,57 +3,57 @@
     margin: 2rem auto;
 }
 
-.Navbar_box{
+.Navbar_modal{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     align-items: center;
     justify-content: space-between;
     gap: 1rem
 }
-.Navbar_box_left{
+.Navbar_modal_left{
     display: flex;
     gap: 4rem;
     align-items: center;
 }
-.Navbar_box_left_menu{
+.Navbar_modal_left_menu{
     display: flex;
     align-items: center;
     gap: 2rem;
 
 }
-.Navbar_box_left_menu_item{
+.Navbar_modal_left_menu_item{
     font-size: 1.2rem;
-    color: #cff80b;
+    color: #ff0084;
 
 }
-.Navbar_box_middle{
+.Navbar_modal_middle{
     background-color: #1e1e1e;
     width: 80%;
     padding: 1rem 1.5rem;
     border-radius: .5rem;
 }
-.Navbar_box_middle_search{
+.Navbar_modal_middle_search{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
     cursor: pointer;
 }
-.Navbar_box_middle input{
+.Navbar_modal_middle input{
     background-color: transparent;
     outline: none;
     border: none;
     font-size: 1rem;
-    color: #cff80b;
+    color: #ff0084;
 } 
 
-.Navbar_box_right{
+.Navbar_modal_right{
     display: flex;
     align-items:  center;
     justify-content: end;
     gap: 1rem;
 }
-.Navbar_box_right_box{
+.Navbar_modal_right_modal{
     display: flex;
     align-items: center;
     gap: 1rem; /* //primary
@@ -64,18 +64,18 @@
     cursor: pointer;
     text-transform: capitalize;
 }
-.Navbar_box_right_box p{
+.Navbar_modal_right_modal p{
     font-size: 1.2rem;
     line-height: 0;
     /*Secondary*/
-    color: #cff80b;
+    color: #ff0084;
 }
 
-.Navbar_box_right button{
+.Navbar_modal_right button{
     background-color: #1e1e1e;
     border: none;
     outline: none;
-    color:#cff80b;
+    color:#ff0084;
     padding: 1.2rem 1.5rem;
     border-radius: .5rem;
     font-size: 1.2rem;
@@ -91,16 +91,16 @@
     .Navbar{
         width: 90%;
     }
-    .Navbar_box{
+    .Navbar_modal{
         grid-template-columns: .5fr 1fr;
     }
-    .Navbar_box_middle{
+    .Navbar_modal_middle{
         display: none;
     }
-    .Navbar_box_left_menu{
+    .Navbar_modal_left_menu{
         display: none;
     }
-    .Navbar_box_right_menu{
+    .Navbar_modal_right_menu{
         display: none;
     }
 }

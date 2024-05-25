@@ -35,4 +35,10 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-1 13# cryptoswap
+npm i @uniswap/v3-periphery
+
+npm i @openzeppelin/contracts
+
+npm i ether
+
+npm i web3modal

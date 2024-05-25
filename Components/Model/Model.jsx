@@ -8,20 +8,20 @@ const Model=({setOpenModel, connectWallet}) =>{
     const walletMenu = ["MetaMask","Coinbase","Wallet","walletConnect"];
     return (
         <div className={Style.Model}>
-            <div className={Style.Model_box}>
-                <div className={Style.Model_box_heading}>
+            <div className={Style.Model_modal}>
+                <div className={Style.Model_modal_heading}>
                     <p>Connect a Wallet!</p>
-                    <div className={Style.Model_box_heading_img}>
+                    <div className={Style.Model_modal_heading_img}>
                         <Image  src={images.close} alt="logo" width={50} height={50} onClick={()=>setOpenModel(false)}/>
                     </div>
                 </div>
-                <div className={Style.Model_box_wallet}>
+                <div className={Style.Model_modal_wallet}>
                     {walletMenu.map((el, i)=>(
                     <p key={i + 1} onClick={()=>connectWallet()}>
                         {el}
                     </p>))}
                 </div>
-                <p className={Style.Model_box_para}>
+                <p className={Style.Model_modal_para}>
                     By connecting a wallet, you agree to cryptoswap Labs <br /> Terms and consent to its privacy policy
                 </p>
             </div>
