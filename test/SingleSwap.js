@@ -1,51 +1,57 @@
-const {expect} = require("chai");
-const {ethers} = require("hardhat");
+const { expect } = require("chai");
+const { ethers } = require("hardhat");
 
-const DAI = "";
-const WETH9 = "";
-const USDC = "";
+const DAI = "paste address";
+const WETH9 = "paste address";
+const USDC = "paste address";
 
-describe("SingleSwapToken",()=>{
+describe("SingleSwapToken", () => {
     let singleSwapToken;
     let accounts;
     let weth;
     let dai;
     let usdc;
 
-    before(async ()=>{
-        accounts = await ethers.getSigners(1)
+    before(async () => {
+        accounts = await ethers.getSigners();
         const SingleSwapToken = await ethers.getContractFactory("SingleSwapToken");
         singleSwapToken = await SingleSwapToken.deploy();
-
         await singleSwapToken.deployed();
+
         weth = await ethers.getContractAt("IWETH", WETH9);
-        // dai = await ethers.getContractAt("IERC20", DAI);
+        dai = await ethers.getContractAt("IERC20", DAI);
         usdc = await ethers.getContractAt("IERC20", USDC);
-
-        // console.log('weth', weth);
-        // console.log('dai', dai);
-        // console.log('usdc', usdc);
-        // console.log('accounts', accounts);
-        // console.log('singleSwapToken', singleSwapToken);
-
-
-
     });
 
-    it("swapExactInputSingle", async ()=>{
-        const amountIn = 10n ** 18n;
+    it("swapExactInputSingle", async () => {
+        // 1 WETH
+        const amountIn = ethers.utils.parseUnits("1", 18); 
 
-        //Deposit WETH
-        await weth.deposit({value: amountIn});
+        await weth.deposit({ value: amountIn });
         await weth.approve(singleSwapToken.address, amountIn);
 
-        //swap
+        // Check the balances before token swap
+        console.log("DAI Balance Before Swap:", (await dai.balanceOf(accounts[0].address)).toString());
+
+        // Swap
         await singleSwapToken.swapExactInputSingle(amountIn);
-        // console.log("Balance Of", await dai.balanceOf(accounts[0].address))
-        // console.log('weth', weth);
-        // console.log('dai', dai);
-        // console.log('usdc', usdc);
-        // console.log('accounts', accounts);
-        // console.log('singleSwapToken', singleSwapToken);
-    })
-})
+
+        // Check the balances after tokenswap
+        console.log("DAI Balance After Swap:", (await dai.balanceOf(accounts[0].address)).toString());
+    });
+
+    //we specify what amount of tokens we need as output on this basis it decides input
+    it.only("swapExactOutputSingle", async () => {
+        const wethAmounInMax = 10n ** 18n;
+        const daiAmountOut = 100n * 10n ** 18n;
+
+        await weth.deposit({value: wethAmounInMax});
+        await weth.approve(singleSwapToken.address, wethAmounInMax);
+
+        await singleSwapToken.swapExactOutputSingle(daiAmountOut, wethAmounInMax);
+
+        console.log("address=>", accounts[0].address);
+        console.log("Dai Balance=>", (await dai.balanceOf(accounts[0].address)).toString());
+
+    });
+});
